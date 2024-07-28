@@ -77,7 +77,6 @@ class _HomeState extends State<Home> {
   UserModel user =
       UserModel(name: 'user', token: '', message: '', validation: false);
 
-
   BlocViewModel viewModel = BlocViewModel();
   @override
   Widget build(BuildContext context) {
@@ -109,9 +108,7 @@ class _HomeState extends State<Home> {
                                 .copyWith(fontWeight: FontWeight.bold),
                           ),
                         ),
-                        const SizedBox(
-                          height: 50,
-                        ),
+                        const SizedBox(height: 50),
                         ElevatedButton(
                           onPressed: () {
                             FirebaseHttpRequest.sendNotifications(user.token!);
@@ -134,7 +131,7 @@ class _HomeState extends State<Home> {
                       height: 100,
                       width: 100,
                       child: Text(
-                       '',
+                        '',
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                     ),
@@ -155,14 +152,15 @@ class _HomeState extends State<Home> {
         content: MobileScanner.showCode(),
         actions: [
           ElevatedButton(
-              onPressed: () {
-                FirebaseUtils.getToken(user.token!);
-                FirebaseHttpRequest.sendNotifications(user.token!);
-              },
-              child: Text(
-                'Send to admin',
-                style: Theme.of(context).textTheme.titleMedium,
-              ))
+            onPressed: () {
+              FirebaseUtils.getToken(user.token!);
+              FirebaseHttpRequest.sendNotifications(user.token!);
+            },
+            child: Text(
+              'Send to admin',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+          ),
         ],
       ),
     );
@@ -180,7 +178,6 @@ class _HomeState extends State<Home> {
       }
     }
   }
-
 
   //       // var docRef =FirebaseFirestore.instance.collection(userModel.name!).doc();
   //       // var userRef =await docRef.get();
