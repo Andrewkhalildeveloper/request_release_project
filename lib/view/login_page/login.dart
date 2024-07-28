@@ -12,12 +12,6 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  UserModel userModel = UserModel(
-    name: 'user',
-    message: '',
-    validation: false,
-    token: '',
-  );
   String name1 = 'Admin';
   String name2 = 'user';
   @override
@@ -39,7 +33,7 @@ class _LoginState extends State<Login> {
             ),
             TextButton(
               onPressed: () {
-                addingUser();
+                addingUser(name2);
               },
               child: Text(
                 'User',
@@ -52,7 +46,13 @@ class _LoginState extends State<Login> {
     );
   }
 
-  addingUser() {
+  addingUser(String userName) {
+    UserModel userModel = UserModel(
+      name: userName,
+      message: '',
+      validation: false,
+      token: '',
+    );
     FirebaseUtils.addUser(userModel).timeout(
       const Duration(milliseconds: 20),
       onTimeout: () {
@@ -71,6 +71,7 @@ class _LoginState extends State<Login> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
+                        settings: RouteSettings(arguments: userModel),
                         builder: (context) => const Home(),
                       ),
                     );

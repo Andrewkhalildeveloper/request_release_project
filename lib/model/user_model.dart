@@ -17,7 +17,7 @@ class UserModel {
       : this(
           name: json['name'],
           message: json['message'],
-          token: json['token'] != null ? json['genre_ids'].cast<String>() : [],
+          token: json['token'],
           validation: json['validation'],
         );
 
